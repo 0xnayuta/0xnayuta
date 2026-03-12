@@ -30,39 +30,31 @@
 
 <h2 align="center">
   <img src="https://media.giphy.com/media/Sqlj82Xy4eZKSU9iVM/giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
-  关于我
+  关于
 </h2>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>
-<td width="34%" valign="top">
 
-> 
 > ### 💻 「技术」：探索与动手
 >
 > - 🔬 **关注领域**：Python | C++ | 前端开发
 > - 🤖 **业余项目**：热衷 AI 工具，享受动手解决实际问题的乐趣
 > - 💡 **编程理念**：发现游戏与编程的内在共通之美
-> 
 
-> 
 > ### 🎮 「游戏」：沉浸、挑战与创造
 >
 > - ⚔️ **竞技对抗**：英雄联盟 | CS2
 > - 🔥 **受苦与探索**：艾尔登法环 | 黑暗之魂 | 黑神话：悟空
 > - 😱 **氛围与动作**：《寂静岭》系列 | 《生化危机》系列
 > - 🌱 **独立与创造**：泰拉瑞亚 | 我的世界 | 空洞骑士 | 动物井
->
 
->
 > ### 🎬 「番剧与电影」：共鸣与感动
 >
 > - 🌸 **青春与情感**：CLANNAD | 青春猪头少年系列 | 我的青春恋爱物语果然有问题 | 辉夜大小姐想让我告白
 > - 💥 **奇幻与热血**：电锯人 | 无职转生 | 犬夜叉
-> - ✨ **新海诚宇宙**：你的名字 | 天气之子
->
+> - ✨ **新海诚宇宙**：你的名字 | 天气之子<br />
 
-</td>
 </tr>
 </table>
 
@@ -112,7 +104,7 @@
 <!-- 项目展示部分 - 统一标题样式并对齐图标 -->
 <h2 align="center">
   <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
-  精选项目
+  置顶项目
   <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
 </h2>
 
@@ -126,6 +118,7 @@
 </div>
 
 <!-- 添加项目按钮 -->
+<br />
 <div align="center">
   <a href="https://github.com/0xnayuta?tab=repositories">
     <img src="https://img.shields.io/badge/更多项目-查看全部-%23FF5F6D?style=for-the-badge&logo=github" alt="查看更多项目" />
@@ -148,7 +141,7 @@
 </picture>
 
 <!-- 实时贡献日历热图 -->
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=0xnayuta&theme=radical" width="75%" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=0xnayuta&theme=radical" width="76%" />
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0xnayuta&theme=radical&hide_border=true&title_color=FF5F6D" width="23%" />
 </div>
 
