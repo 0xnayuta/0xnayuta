@@ -1,12 +1,12 @@
 <div align="center">
   
   <!-- 增强标题横幅 - 使用更动感的渐变色 -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:FF5F6D,100:FFC371&height=250&section=header&text=Izayoi%20Nayuta&fontSize=90&fontAlignY=35&animation=fadeIn&fontColor=white&desc=对酒当歌，人生几何？&descAlignY=55" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:FF5F6D,100:FFC371&height=250&section=header&text=Izayoi%20Nayuta&fontSize=90&fontAlignY=35&animation=fadeIn&fontColor=white&desc=风起长空，心向何方？&descAlignY=55" />
   
   # 👋 Hello，here is Izayoi Nayuta
   
   <!-- 更改轮播内容和动画速度 -->
-  [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=2000&pause=500&color=2C9CDF&center=true&vCenter=true&width=600&lines=AI初学者+%7C+DB研究者+%7C+创新者;探索科技边界，打造精彩体验;代码改变世界，创意驱动未来;永远保持好奇心，做最酷的项目)](https://git.io/typing-svg)
+  [![Typing SVG](https://readme-typing-svg.demolab.com?font=Microsoft+YaHei&weight=600&size=24&duration=2000&pause=500&color=2C9CDF&center=true&vCenter=true&width=600&lines=这一切都是命运石之门的+Commit;跨越无数个+branch，只为在+main+分支与你相遇;正在观测当前世界线的+Bug+收束率...;正在咏唱禁忌魔法：sudo+rm+-rf+/*)](https://git.io/typing-svg)
 
   <!-- 动感社交媒体按钮 - 增加阴影和悬停效果 -->
   <p align="center">
@@ -64,6 +64,7 @@
 <h2 align="center">
   <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
   技能与工具
+  <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
 </h2>
 
 <div align="center">
@@ -98,7 +99,6 @@
 <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=0xnayuta&theme=radical" width="33%" />
 
 </div>
-  
   <!-- 添加动态贡献热图 -->
   <img src="https://trophy.ryglcloud.net/?username=0xnayuta&theme=radical&no-frame=true&row=1&column=7" width="100%" alt="GitHub 奖杯" />
 </div>
@@ -107,6 +107,7 @@
 <h2 align="center">
   <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
   精选项目
+  <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" height="30px" style="vertical-align: middle; position: relative; top: -2px;"/>
 </h2>
 
 <div align="center">
@@ -118,12 +119,6 @@
   </a>
 </div>
 
-<div align="center">
-<a href="https://github.com/0xnayuta">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0xnayuta&theme=radical&hide_border=true&title_color=FF5F6D" width="49%" />
-  </a>
-</div>
-
 <!-- 添加项目按钮 -->
 <div align="center">
   <a href="https://github.com/0xnayuta?tab=repositories">
@@ -131,10 +126,10 @@
   </a>
 </div>
 
-<!-- GitHub 活动图 - 统一标题样式并对齐图标 -->
+<!-- 活动足迹图 - 统一标题样式并对齐图标 -->
 <h2 align="center">
   <img src="https://i.imgur.com/dBaSKWF.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
-  GitHub 活动
+  活动足迹
   <img src="https://i.imgur.com/dBaSKWF.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
 </h2>
 
@@ -148,6 +143,19 @@
 
 <!-- 实时贡献日历热图 -->
 <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=0xnayuta&theme=radical" width="100%" />
+</div>
+
+<!-- 语言统计图 - 统一标题样式并对齐图标 -->
+<h2 align="center">
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTk2eDhid2trOHc5OTJheGN3bnNzbWlrdmhhbGMzZGNzYTg4aWN1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/2tRkgMD3MZCGkhexMy/giphy.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
+  语言统计
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTk2eDhid2trOHc5OTJheGN3bnNzbWlrdmhhbGMzZGNzYTg4aWN1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/2tRkgMD3MZCGkhexMy/giphy.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
+</h2>
+
+<div align="center">
+<a href="https://github.com/0xnayuta">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0xnayuta&theme=radical&hide_border=true&title_color=FF5F6D" width="49%" />
+  </a>
 </div>
 
 <!-- 使用SVG制作的动态语录 -->
