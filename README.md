@@ -6,7 +6,7 @@
   # 👋 Hello, here is Izayoi Nayuta!
   
   <!-- 更改轮播内容和动画速度 -->
-  [![Typing SVG](https://readme-typing-svg.demolab.com?font=Microsoft+YaHei&weight=600&size=24&duration=2000&pause=500&color=2C9CDF&center=true&vCenter=true&width=600&lines=这一切都是命运石之门的+Commit;跨越无数个+branch，只为在+main+分支与你相遇;正在观测当前世界线的+Bug+收束率...;正在咏唱禁忌魔法：sudo+rm+-rf+/*)](https://git.io/typing-svg)
+  [![Typing SVG](https://readme-typing-svg.demolab.com/?font=Microsoft+YaHei&weight=600&size=24&duration=2000&pause=500&color=2C9CDF&center=true&vCenter=true&width=600&lines=%E8%BF%99%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%9A%84+Commit;%E8%B7%A8%E8%B6%8A%E6%97%A0%E6%95%B0%E4%B8%AA+branch%EF%BC%8C%E5%8F%AA%E4%B8%BA%E5%9C%A8+main+%E5%88%86%E6%94%AF%E4%B8%8E%E4%BD%A0%E7%9B%B8%E9%81%87;%E6%AD%A3%E5%9C%A8%E8%A7%82%E6%B5%8B%E5%BD%93%E5%89%8D%E4%B8%96%E7%95%8C%E7%BA%BF%E7%9A%84+Bug+%E6%94%B6%E6%9D%9F%E7%8E%87...;%E6%AD%A3%E5%9C%A8%E5%92%8F%E5%94%B1%E7%A6%81%E5%BF%8C%E9%AD%94%E6%B3%95%EF%BC%9Asudo+rm+-rf+/*)](https://git.io/typing-svg)
 
   <!-- 动感社交媒体按钮 - 增加阴影和悬停效果 -->
   <p align="center">
@@ -154,7 +154,7 @@
 
 <!-- 使用SVG制作的动态语录 -->
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Microsoft YaHei&weight=600&size=22&pause=1000&color=FF9190&center=true&vCenter=true&random=false&width=600&height=80&lines=Bug？那是世界的+Feature。;万物皆对象，唯你不可实例化。;今天也顺利避开了所有+Error。" alt="编程二次元" />
+  <img src="https://readme-typing-svg.demolab.com/?font=Microsoft%20YaHei&weight=600&size=22&pause=1000&color=FF9190&center=true&vCenter=true&random=false&width=600&height=80&lines=Bug%EF%BC%9F%E9%82%A3%E6%98%AF%E4%B8%96%E7%95%8C%E7%9A%84+Feature%E3%80%82;%E4%B8%87%E7%89%A9%E7%9A%86%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%94%AF%E4%BD%A0%E4%B8%8D%E5%8F%AF%E5%AE%9E%E4%BE%8B%E5%8C%96%E3%80%82;%E4%BB%8A%E5%A4%A9%E4%B9%9F%E9%A1%BA%E5%88%A9%E9%81%BF%E5%BC%80%E4%BA%86%E6%89%80%E6%9C%89+Error%E3%80%82%22%20alt=%22%E7%BC%96%E7%A8%8B%E4%BA%8C%E6%AC%A1%E5%85%83" alt="编程二次元" />
 </div>
 
 <!-- 页脚 - 统一标题样式并对齐图标 -->
