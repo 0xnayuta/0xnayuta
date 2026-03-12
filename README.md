@@ -148,20 +148,8 @@
 </picture>
 
 <!-- 实时贡献日历热图 -->
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=0xnayuta&theme=radical" width="100%" />
-</div>
-
-<!-- 语言统计图 - 统一标题样式并对齐图标 -->
-<h2 align="center">
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTk2eDhid2trOHc5OTJheGN3bnNzbWlrdmhhbGMzZGNzYTg4aWN1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/2tRkgMD3MZCGkhexMy/giphy.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
-  语言统计
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTk2eDhid2trOHc5OTJheGN3bnNzbWlrdmhhbGMzZGNzYTg4aWN1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/2tRkgMD3MZCGkhexMy/giphy.gif" height="25px" width="25px" style="vertical-align: middle; position: relative; top: -2px;"/>
-</h2>
-
-<div align="center">
-<a href="https://github.com/0xnayuta">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0xnayuta&theme=radical&hide_border=true&title_color=FF5F6D" width="49%" />
-  </a>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=0xnayuta&theme=radical" width="75%" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0xnayuta&theme=radical&hide_border=true&title_color=FF5F6D" width="23%" />
 </div>
 
 <!-- 使用SVG制作的动态语录 -->
