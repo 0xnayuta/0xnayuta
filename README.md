@@ -147,7 +147,7 @@
 
 <!-- 使用SVG制作的动态语录 -->
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com/?font=Microsoft%20YaHei&weight=600&size=22&pause=1000&color=FF9190&center=true&vCenter=true&random=false&width=600&height=80&lines=Bug%EF%BC%9F%E9%82%A3%E6%98%AF%E4%B8%96%E7%95%8C%E7%9A%84+Feature%E3%80%82;%E4%B8%87%E7%89%A9%E7%9A%86%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%94%AF%E4%BD%A0%E4%B8%8D%E5%8F%AF%E5%AE%9E%E4%BE%8B%E5%8C%96%E3%80%82;%E4%BB%8A%E5%A4%A9%E4%B9%9F%E9%A1%BA%E5%88%A9%E9%81%BF%E5%BC%80%E4%BA%86%E6%89%80%E6%9C%89+Error%E3%80%82%22%20alt=%22%E7%BC%96%E7%A8%8B%E4%BA%8C%E6%AC%A1%E5%85%83" alt="编程二次元" />
+  <img src="https://readme-typing-svg.demolab.com/?font=Microsoft%20YaHei&weight=600&size=22&pause=1000&color=FF9190&center=true&vCenter=true&random=false&width=600&height=80&lines=Bug%EF%BC%9F%E9%82%A3%E6%98%AF%E4%B8%96%E7%95%8C%E7%9A%84+Feature%E3%80%82;%E4%B8%87%E7%89%A9%E7%9A%86%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%94%AF%E4%BD%A0%E4%B8%8D%E5%8F%AF%E5%AE%9E%E4%BE%8B%E5%8C%96%E3%80%82;%E4%BB%8A%E5%A4%A9%E4%B9%9F%E9%A1%BA%E5%88%A9%E9%81%BF%E5%BC%80%E4%BA%86%E6%89%80%E6%9C%89+Error%E3%80%82" alt="编程二次元" />
 </div>
 
 <!-- 页脚 - 统一标题样式并对齐图标 -->
