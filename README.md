@@ -3,7 +3,7 @@
   <!-- 增强标题横幅 - 使用更动感的渐变色 -->
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:FF5F6D,100:FFC371&height=250&section=header&text=Izayoi%20Nayuta&fontSize=90&fontAlignY=35&animation=fadeIn&fontColor=white&desc=风起长空，心向何方？&descAlignY=55" />
   
-  # 👋 Hello，here is Izayoi Nayuta
+  # 👋 Hello, here is Izayoi Nayuta!
   
   <!-- 更改轮播内容和动画速度 -->
   [![Typing SVG](https://readme-typing-svg.demolab.com?font=Microsoft+YaHei&weight=600&size=24&duration=2000&pause=500&color=2C9CDF&center=true&vCenter=true&width=600&lines=这一切都是命运石之门的+Commit;跨越无数个+branch，只为在+main+分支与你相遇;正在观测当前世界线的+Bug+收束率...;正在咏唱禁忌魔法：sudo+rm+-rf+/*)](https://git.io/typing-svg)
@@ -184,19 +184,21 @@
 <div align="center">
   <p>本模板采用 <a href="https://opensource.org/licenses/MIT">MIT 许可证</a> 进行授权</p>
   
-  <p>您可以自由地：</p>
+  <p>您可以自由地：
   <ul style="list-style-type: none; padding: 0;">
-    <li>✅ 使用本模板创建个人 GitHub Profile</li>
-    <li>✅ 修改和定制以满足您的需求</li>
-    <li>✅ 分发您修改后的版本</li>
+    <a>✅ 使用本模板创建个人 GitHub Profile</a><br />
+    <a>✅ 修改和定制以满足您的需求</a><br />
+    <a>✅ 分发您修改后的版本</a>
   </ul>
-  
-  <p>条件是：</p>
+  </p>
+
+  <p>条件是：
   <ul style="list-style-type: none; padding: 0;">
-    <li>📝 保留原始版权声明</li>
-    <li>📝 不追究作者责任</li>
+    <a>📝 保留原始版权声明</a><br />
+    <a>📝 不追究作者责任</a>
   </ul>
-  
+  </p>
+
   <p>
     <a href="https://opensource.org/licenses/MIT">
       <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License" />
