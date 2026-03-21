@@ -26,8 +26,7 @@
 
 <!-- About Me Section -->
 <h2 align="center">
-  <img src="https://media.giphy.com/media/Sqlj82Xy4eZKSU9iVM/giphy.gif" width="30px" style="vertical-align: middle;"/>
-  ✨ 关于我 (About Me)
+  ✨ 关于我
 </h2>
 
 <div align="center">
@@ -66,8 +65,7 @@
 
 <!-- Skills Section -->
 <h2 align="center">
-  <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width="30px" style="vertical-align: middle;"/>
-  🚀 技能与工具 (Skills & Tools)
+  🚀 技能与工具
 </h2>
 
 <div align="center">
@@ -81,8 +79,7 @@
 
 <!-- GitHub Stats Section -->
 <h2 align="center">
-  <img src="https://media.giphy.com/media/jSKBmKkvo2dPQQtsR1/giphy.gif" width="25px" style="vertical-align: middle;"/>
-  📊 社区贡献 (GitHub Stats)
+  📊 社区贡献
 </h2>
 
 <div align="center">
@@ -101,8 +98,7 @@
 
 <!-- Pinned Projects -->
 <h2 align="center">
-  <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30px" style="vertical-align: middle;"/>
-  🌟 置顶项目 (Pinned Projects)
+  🌟 置顶项目
 </h2>
 
 <div align="center">
@@ -114,7 +110,7 @@
   </a>
   <br><br>
   <a href="https://github.com/0xnayuta?tab=repositories">
-    <img src="https://img.shields.io/badge/探索更多项目_Explore_More_Projects-%23FF5F6D?style=for-the-badge&logo=github" alt="查看更多项目" />
+    <img src="https://img.shields.io/badge/探索更多项目-%23FF5F6D?style=for-the-badge&logo=github" alt="查看更多项目" />
   </a>
 </div>
 
@@ -123,8 +119,7 @@
 
 <!-- Activity Snake -->
 <h2 align="center">
-  <img src="https://i.imgur.com/dBaSKWF.gif" height="25px" style="vertical-align: middle;"/>
-  🐍 活动足迹 (Activity Footprint)
+  🐍 活动足迹
 </h2>
 
 <div align="center">
@@ -133,19 +128,16 @@
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/github-contribution-grid-snake.svg">
     <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/github-contribution-grid-snake.svg" width="100%">
   </picture>
-  <p><i>注：当前显示的贪吃蛇图由 GitHub Actions 定期自动生成！</i></p>
 </div>
 
 <!-- Fun Quotes -->
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com/?font=Microsoft%20YaHei&weight=600&size=20&pause=1000&color=FF9190&center=true&vCenter=true&random=false&width=600&height=50&lines=Bug%EF%BC%9F%E9%82%A3%E6%98%AF%E4%B8%96%E7%95%8C%E7%9A%84+Feature%E3%80%82;%E4%B8%87%E7%89%A9%E7%9A%86%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%94%AF%E4%BD%A0%E4%B8%8D%E5%8F%AF%E5%AE%9E%E4%BE%8B%E5%8C%96%E3%80%82;%E4%BB%8A%E5%A4%A9%E4%B9%9F%E9%A1%BA%E5%88%A9%E9%81%BF%E5%BC%80%E4%BA%86%E6%89%80%E6%9C%89+Error%E3%80%82" alt="编程语录" />
+  <img src="https://readme-typing-svg.demolab.com/?font=Microsoft%20YaHei&weight=600&size=20&pause=1000&color=FF9190&center=true&vCenter=true&random=false&width=600&height=50&lines=Bug%EF%BC%9F%E9%82%A3%E6%98%AF%E4%B8%96%E7%95%8C%E7%9A%84+Feature;%E4%B8%87%E7%89%A9%E7%9A%86%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%94%AF%E4%BD%A0%E4%B8%8D%E5%8F%AF%E5%AE%9E%E4%BE%8B%E5%8C%96;%E4%BB%8A%E5%A4%A9%E4%B9%9F%E9%A1%BA%E5%88%A9%E9%81%BF%E5%BC%80%E4%BA%86%E6%89%80%E6%9C%89+Error" alt="编程语录" />
 </div>
 
 <!-- Footer -->
 <h3 align="center">
-  <img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30px" style="vertical-align: middle;"/>
   感谢访问我的 GitHub 主页!
-  <img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30px" style="vertical-align: middle;"/>
 </h3>
 
 <p align="center">
