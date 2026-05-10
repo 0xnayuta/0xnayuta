@@ -42,12 +42,12 @@
 </h2>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/stats.svg" width="32%" />
-  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/repos-per-language.svg" width="32%" />
-  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/most-commit-language.svg" width="32%" />
+  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/3-stats.svg" width="32%" />
+  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/1-repos-per-language.svg" width="32%" />
+  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/2-most-commit-language.svg" width="32%" />
   <br><br>
-  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/profile-details.svg" width="65%" />
-  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/productive-time.svg" width="32%" />
+  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/0-profile-details.svg" width="65%" />
+  <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/cards/4-productive-time.svg" width="32%" />
   <br><br>
   <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/trophy.svg" width="100%" alt="GitHub Trophies" />
 </div>
@@ -62,10 +62,10 @@
 
 <div align="center">
   <a href="https://github.com/0xnayuta/devpiano">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=0xnayuta&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D" width="48%" />
+    <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/pins/devpiano.svg" width="48%" />
   </a>
   <a href="https://github.com/0xnayuta/rutracker-chinese">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=0xnayuta&repo=rutracker-chinese&theme=radical&hide_border=true&title_color=FF5F6D" width="48%" />
+    <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/pins/rutracker-chinese.svg" width="48%" />
   </a>
   <br><br>
   <a href="https://github.com/0xnayuta?tab=repositories">

@@ -123,7 +123,16 @@ jobs:
           fi
 
       # ============================================
-      # 9. 推送所有静态资源到 output 分支
+      # 9. 生成置顶项目卡片
+      # ============================================
+      - name: Generate pinned repo cards
+        run: |
+          mkdir -p dist/pins
+          curl -sL "https://github-readme-stats.vercel.app/api/pin/?username=${{ github.repository_owner }}&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D" -o dist/pins/devpiano.svg
+          curl -sL "https://github-readme-stats.vercel.app/api/pin/?username=${{ github.repository_owner }}&repo=rutracker-chinese&theme=radical&hide_border=true&title_color=FF5F6D" -o dist/pins/rutracker-chinese.svg
+
+      # ============================================
+      # 10. 推送所有静态资源到 output 分支
       # ============================================
       - name: Push assets to output branch
         uses: crazy-max/ghaction-github-pages@v5
