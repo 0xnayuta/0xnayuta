@@ -17,11 +17,13 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       contents: write
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # ============================================
       # 1. 生成 GitHub 贡献贪吃蛇动画
@@ -124,7 +126,7 @@ jobs:
       # 9. 推送所有静态资源到 output 分支
       # ============================================
       - name: Push assets to output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+        uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: output
           build_dir: dist
