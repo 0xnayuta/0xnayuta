@@ -64,8 +64,8 @@
   <a href="https://github.com/0xnayuta/devpiano">
     <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/pins/devpiano.svg" width="48%" />
   </a>
-  <a href="https://github.com/0xnayuta/rutracker-chinese">
-    <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/pins/rutracker-chinese.svg" width="48%" />
+  <a href="https://github.com/0xnayuta/devkit-pi">
+    <img src="https://raw.githubusercontent.com/0xnayuta/0xnayuta/output/pins/devkit-pi.svg" width="48%" />
   </a>
   <br><br>
   <a href="https://github.com/0xnayuta?tab=repositories">
