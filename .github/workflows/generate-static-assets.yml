@@ -57,6 +57,7 @@ jobs:
         with:
           username: ${{ github.repository_owner }}
           file: dist/trophy.svg
+          theme: radical
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # ============================================
@@ -90,8 +91,8 @@ jobs:
           # 头部横幅
           curl -sL "https://capsule-render.vercel.app/api?type=waving&color=0:FF5F6D,100:FFC371&height=250&section=header&text=Izayoi%20Nayuta&fontSize=90&fontAlignY=35&animation=fadeIn&fontColor=white&desc=%E9%A3%8E%E8%B5%B7%E9%95%BF%E7%A9%BA%EF%BC%8C%E5%BF%83%E5%90%91%E4%BD%95%E6%96%B9%EF%BC%9F&descAlignY=55" -o dist/capsule/header.svg
           # 分隔线
-          curl -sL "https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12&height=2" -o dist/capsule/divider-rect.svg
-          curl -sL "https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=12&height=3" -o dist/capsule/divider-soft.svg
+          curl -sL "https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=FF5F6D,FF9671,FFC371&height=2" -o dist/capsule/divider-rect.svg
+          curl -sL "https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=FF5F6D,FF9671,FFC371&height=3" -o dist/capsule/divider-soft.svg
           # 底部页脚
           curl -sL "https://capsule-render.vercel.app/api?type=waving&color=0:FF5F6D,50:FF9671,100:FFC371&height=120&section=footer&animation=twinkling&fontAlignY=80" -o dist/capsule/footer.svg
 
@@ -112,11 +113,11 @@ jobs:
       - name: Copy summary cards to dist
         run: |
           mkdir -p dist/cards
-          if [ -d "profile-summary-card-output" ]; then
-            cp -r profile-summary-card-output/* dist/cards/ 2>/dev/null || true
+          if [ -d "profile-summary-card-output/radical" ]; then
+            cp -r profile-summary-card-output/radical/* dist/cards/
             echo "Summary cards copied successfully"
           else
-            echo "Warning: profile-summary-card-output directory not found"
+            echo "Warning: profile-summary-card-output/radical directory not found"
           fi
 
       # ============================================
