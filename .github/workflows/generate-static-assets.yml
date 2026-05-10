@@ -1,0 +1,131 @@
+name: Generate Static Assets
+
+on:
+  # 每 24 小时自动运行一次
+  schedule:
+    - cron: "0 0 * * *"
+  
+  # 允许手动触发工作流
+  workflow_dispatch:
+  
+  # 在推送到主分支时运行
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      # ============================================
+      # 1. 生成 GitHub 贡献贪吃蛇动画
+      # ============================================
+      - name: Generate snake animation
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ============================================
+      # 2. 生成 GitHub Profile Summary Cards
+      # ============================================
+      - name: Generate profile summary cards
+        uses: vn7n24fzkq/github-profile-summary-cards@release
+        env:
+          GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
+        with:
+          USERNAME: ${{ github.repository_owner }}
+          UTC_OFFSET: 8
+          EXCLUDE: ""
+          AUTO_PUSH: false
+
+      # ============================================
+      # 3. 生成 GitHub Profile Trophy
+      # ============================================
+      - name: Generate trophy
+        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
+        with:
+          username: ${{ github.repository_owner }}
+          file: dist/trophy.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ============================================
+      # 4. 下载技能图标
+      # ============================================
+      - name: Download skill icons
+        run: |
+          mkdir -p dist/icons
+          curl -sL "https://skillicons.dev/icons?i=python,cpp,r,js,docker" -o dist/icons/skills.svg
+
+      # ============================================
+      # 5. 生成 Shields.io 徽章
+      # ============================================
+      - name: Generate shields.io badges
+        run: |
+          mkdir -p dist/badges
+          # 静态徽章
+          curl -sL "https://img.shields.io/badge/GitHub-141321?style=for-the-badge&logo=github&logoColor=white" -o dist/badges/github.svg
+          curl -sL "https://img.shields.io/badge/Email-FF5F6D?style=for-the-badge&logo=gmail&logoColor=white" -o dist/badges/email.svg
+          curl -sL "https://img.shields.io/badge/探索更多项目-%23FF5F6D?style=for-the-badge&logo=github" -o dist/badges/more-projects.svg
+          # 动态徽章
+          curl -sL "https://img.shields.io/github/followers/${{ github.repository_owner }}?style=for-the-badge&color=FF5F6D&labelColor=141321" -o dist/badges/followers.svg
+          curl -sL "https://img.shields.io/github/stars/${{ github.repository_owner }}?style=for-the-badge&color=FF9671&labelColor=141321" -o dist/badges/stars.svg
+
+      # ============================================
+      # 6. 生成 Capsule-render 背景/分隔线
+      # ============================================
+      - name: Generate capsule-render assets
+        run: |
+          mkdir -p dist/capsule
+          # 头部横幅
+          curl -sL "https://capsule-render.vercel.app/api?type=waving&color=0:FF5F6D,100:FFC371&height=250&section=header&text=Izayoi%20Nayuta&fontSize=90&fontAlignY=35&animation=fadeIn&fontColor=white&desc=%E9%A3%8E%E8%B5%B7%E9%95%BF%E7%A9%BA%EF%BC%8C%E5%BF%83%E5%90%91%E4%BD%95%E6%96%B9%EF%BC%9F&descAlignY=55" -o dist/capsule/header.svg
+          # 分隔线
+          curl -sL "https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12&height=2" -o dist/capsule/divider-rect.svg
+          curl -sL "https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=12&height=3" -o dist/capsule/divider-soft.svg
+          # 底部页脚
+          curl -sL "https://capsule-render.vercel.app/api?type=waving&color=0:FF5F6D,50:FF9671,100:FFC371&height=120&section=footer&animation=twinkling&fontAlignY=80" -o dist/capsule/footer.svg
+
+      # ============================================
+      # 7. 生成 Typing SVG 动画
+      # ============================================
+      - name: Generate typing SVG
+        run: |
+          mkdir -p dist/typing
+          # 欢迎语打字动画
+          curl -sL "https://readme-typing-svg.demolab.com/?font=Microsoft+YaHei&weight=600&size=22&duration=2000&pause=500&color=FF5F6D&center=true&vCenter=true&width=680&lines=%E8%BF%99%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%9A%84+Commit;%E8%B7%A8%E8%B6%8A%E6%97%A0%E6%95%B0%E4%B8%AA+branch%EF%BC%8C%E5%8F%AA%E4%B8%BA%E5%9C%A8+main+%E5%88%86%E6%94%AF%E4%B8%8E%E4%BD%A0%E7%9B%B8%E9%81%87;%E6%AD%A3%E5%9C%A8%E8%A7%82%E6%B5%8B%E5%BD%93%E5%89%8D%E4%B8%96%E7%95%8C%E7%BA%BF%E7%9A%84+Bug+%E6%94%B6%E6%9D%9F%E7%8E%87...;%E6%AD%A3%E5%9C%A8%E5%92%8F%E5%94%B1%E7%A6%81%E5%BF%8C%E9%AD%94%E6%B3%95%EF%BC%9Asudo+rm+-rf+%2F*" -o dist/typing/welcome.svg
+          # 编程语录
+          curl -sL "https://readme-typing-svg.demolab.com/?font=Microsoft%20YaHei&weight=600&size=20&pause=1000&color=FF9190&center=true&vCenter=true&random=false&width=700&height=50&lines=Bug%EF%BC%9F%E9%82%A3%E6%98%AF%E4%B8%96%E7%95%8C%E7%9A%84+Feature;%E4%B8%87%E7%89%A9%E7%9A%86%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%94%AF%E4%BD%A0%E4%B8%8D%E5%8F%AF%E5%AE%9E%E4%BE%8B%E5%8C%96;%E4%BB%8A%E5%A4%A9%E4%B9%9F%E9%A1%BA%E5%88%A9%E9%81%BF%E5%BC%80%E4%BA%86%E6%89%80%E6%9C%89+Error" -o dist/typing/quotes.svg
+
+      # ============================================
+      # 8. 复制 Summary Cards 到 dist 目录
+      # ============================================
+      - name: Copy summary cards to dist
+        run: |
+          mkdir -p dist/cards
+          if [ -d "profile-summary-card-output" ]; then
+            cp -r profile-summary-card-output/* dist/cards/ 2>/dev/null || true
+            echo "Summary cards copied successfully"
+          else
+            echo "Warning: profile-summary-card-output directory not found"
+          fi
+
+      # ============================================
+      # 9. 推送所有静态资源到 output 分支
+      # ============================================
+      - name: Push assets to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
