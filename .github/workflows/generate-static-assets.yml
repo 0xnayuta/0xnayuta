@@ -70,7 +70,7 @@ jobs:
           download_svg() {
             local tmp=$(mktemp)
             curl -sfL "$1" -o "$tmp"
-            if head -c 1 "$tmp" | grep -q '<'; then
+            if head -c 200 "$tmp" | grep -q '<svg'; then
               mv "$tmp" "$2"
               echo "✅ $2"
             else
@@ -89,7 +89,7 @@ jobs:
           download_svg() {
             local tmp=$(mktemp)
             curl -sfL "$1" -o "$tmp"
-            if head -c 1 "$tmp" | grep -q '<'; then
+            if head -c 200 "$tmp" | grep -q '<svg'; then
               mv "$tmp" "$2"
               echo "✅ $2"
             else
@@ -114,7 +114,7 @@ jobs:
           download_svg() {
             local tmp=$(mktemp)
             curl -sfL "$1" -o "$tmp"
-            if head -c 1 "$tmp" | grep -q '<'; then
+            if head -c 200 "$tmp" | grep -q '<svg'; then
               mv "$tmp" "$2"
               echo "✅ $2"
             else
@@ -139,7 +139,7 @@ jobs:
           download_svg() {
             local tmp=$(mktemp)
             curl -sfL "$1" -o "$tmp"
-            if head -c 1 "$tmp" | grep -q '<'; then
+            if head -c 200 "$tmp" | grep -q '<svg'; then
               mv "$tmp" "$2"
               echo "✅ $2"
             else
