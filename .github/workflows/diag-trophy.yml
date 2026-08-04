@@ -31,8 +31,8 @@ jobs:
           p = "act/src/Services/GithubApiService.ts"
           s = open(p).read()
           s = s.replace(
-            "  } catch {\n    Logger.error(`Error fetching user info for username: ${username}`);",
-            '  } catch (e) {\n    console.log("RUI_CAUGHT " + ' + dumps("e") + ');\n    Logger.error(`Error fetching user info for username: ${username}`);'
+            "    } catch {\n      Logger.error(`Error fetching user info for username: ${username}`);",
+            '    } catch (e) {\n      console.log("RUI_CAUGHT " + ' + dumps("e") + ');\n      Logger.error(`Error fetching user info for username: ${username}`);'
           )
           s = s.replace(
             "    } catch (error) {\n      if (error.cause instanceof ServiceError) {",
