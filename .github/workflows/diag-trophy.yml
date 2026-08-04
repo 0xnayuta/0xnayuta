@@ -25,35 +25,25 @@ jobs:
         env:
           GITHUB_TOKEN1: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
         run: |
-          # Instrument request.ts: dump everything on failure
           python3 - <<'PYEOF'
-          import re
-          p = "act/src/Services/request.ts"
+          def dumps(e):
+              return """JSON.stringify({name: e?.name, message: e?.message, stack: e?.stack, isSoxa: e?.isSoxaError, status: e?.response?.status, data: e?.response?.data}, null, 1)"""
+          p = "act/src/Services/GithubApiService.ts"
           s = open(p).read()
           s = s.replace(
-            "throw handleError(responseData);",
-            """{
-              const err = handleError(responseData);
-              console.log("REQ_FAIL responseData=" + JSON.stringify(responseData).slice(0, 2000));
-              console.log("REQ_FAIL err=" + JSON.stringify(Object.assign({name: err.name, message: err.message}, err)));
-              throw err;
-            }"""
+            "  } catch {\n    Logger.error(`Error fetching user info for username: ${username}`);",
+            '  } catch (e) {\n    console.log("RUI_CAUGHT " + ' + dumps("e") + ');\n    Logger.error(`Error fetching user info for username: ${username}`);'
+          )
+          s = s.replace(
+            "    } catch (error) {\n      if (error.cause instanceof ServiceError) {",
+            '    } catch (error) {\n      console.log("EQ_CAUGHT " + ' + dumps("error") + ');\n      if (error.cause instanceof ServiceError) {'
           )
           open(p, "w").write(s)
-          p = "act/render_svg.ts"
+          p = "act/src/Helpers/Retry.ts"
           s = open(p).read()
           s = s.replace(
-            "const svc = new GithubApiService();",
-            """console.log("ENV_TYPE=" + Deno.env.get("ENV_TYPE"));
-            console.log("DENO_VER=" + Deno.version.deno);
-            console.log("TOKEN_PREFIX=" + (Deno.env.get("GITHUB_TOKEN1") || "").slice(0, 10));
-            console.log("GITHUB_API=" + Deno.env.get("GITHUB_API"));
-            const svc = new GithubApiService();"""
-          )
-          s = s.replace(
-            "if (\n    !(userInfoOrError && (userInfoOrError as any).totalCommits !== undefined)\n  ) {",
-            """if (userInfoOrError instanceof Error) { console.log("SVCE_ERR name=" + userInfoOrError.name + " msg=" + (userInfoOrError as any).message + " kind=" + (userInfoOrError as any).kind); }
-            if (\n    !(userInfoOrError && (userInfoOrError as any).totalCommits !== undefined)\n  ) {"""
+            "    } catch (e) {\n      if (e instanceof ServiceError && isLastAttempt) {",
+            '    } catch (e) {\n      console.log("CAI_CAUGHT " + ' + dumps("e") + ');\n      if (e instanceof ServiceError && isLastAttempt) {'
           )
           open(p, "w").write(s)
           print("patched")
