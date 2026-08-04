@@ -20,24 +20,42 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Run unmodified render_svg.ts via wrapper with dump
+      - name: Instrument and run
         shell: bash
         env:
           GITHUB_TOKEN1: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
         run: |
-          mkdir -p /tmp/wrap
-          cat > /tmp/wrap/w.ts <<'EOF'
-          const dumps = (e: unknown) => {
-            const o = e as Record<string, unknown>;
-            const out: Record<string, unknown> = { name: (e as Error)?.name, message: (e as Error)?.message, stack: (e as Error)?.stack };
-            for (const k of Object.getOwnPropertyNames(o ?? {})) out[k] = o[k];
-            return JSON.stringify(out, null, 1).slice(0, 4000);
-          };
-          try {
-            await import("/home/runner/work/0xnayuta/0xnayuta/act/render_svg.ts");
-          } catch (e) {
-            console.log("WRAPPER_CAUGHT " + dumps(e));
-            Deno.exit(42);
-          }
-          EOF
-          deno run --allow-net --allow-env --allow-read --allow-write /tmp/wrap/w.ts "0xnayuta" --file "dist/trophy.svg" --theme "radical" 2>&1 | grep -vE '^(Download|Warning)' 
+          # Instrument request.ts: dump everything on failure
+          python3 - <<'PYEOF'
+          import re
+          p = "act/src/Services/request.ts"
+          s = open(p).read()
+          s = s.replace(
+            "throw handleError(responseData);",
+            """{
+              const err = handleError(responseData);
+              console.log("REQ_FAIL responseData=" + JSON.stringify(responseData).slice(0, 2000));
+              console.log("REQ_FAIL err=" + JSON.stringify(Object.assign({name: err.name, message: err.message}, err)));
+              throw err;
+            }"""
+          )
+          open(p, "w").write(s)
+          p = "act/render_svg.ts"
+          s = open(p).read()
+          s = s.replace(
+            "const svc = new GithubApiService();",
+            """console.log("ENV_TYPE=" + Deno.env.get("ENV_TYPE"));
+            console.log("DENO_VER=" + Deno.version.deno);
+            console.log("TOKEN_PREFIX=" + (Deno.env.get("GITHUB_TOKEN1") || "").slice(0, 10));
+            console.log("GITHUB_API=" + Deno.env.get("GITHUB_API"));
+            const svc = new GithubApiService();"""
+          )
+          s = s.replace(
+            "if (\n    !(userInfoOrError && (userInfoOrError as any).totalCommits !== undefined)\n  ) {",
+            """if (userInfoOrError instanceof Error) { console.log("SVCE_ERR name=" + userInfoOrError.name + " msg=" + (userInfoOrError as any).message + " kind=" + (userInfoOrError as any).kind); }
+            if (\n    !(userInfoOrError && (userInfoOrError as any).totalCommits !== undefined)\n  ) {"""
+          )
+          open(p, "w").write(s)
+          print("patched")
+          PYEOF
+          deno run --allow-net --allow-env --allow-read --allow-write act/render_svg.ts "0xnayuta" --file "dist/trophy.svg" --theme "radical" 2>&1 | grep -vE '^(Download|Warning)'
