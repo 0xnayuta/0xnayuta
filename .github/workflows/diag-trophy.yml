@@ -10,74 +10,28 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Test full queryUserAll with GITHUB_TOKEN via curl
+      - name: Count null repo nodes with GITHUB_TOKEN
         shell: bash
         env:
           GHTOK: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat > /tmp/q.json <<'EOF'
-          {"query":"query userInfo($username: String!) { user(login: $username) { createdAt contributionsCollection { totalCommitContributions restrictedContributionsCount totalPullRequestReviewContributions } organizations(first: 1) { totalCount } followers(first: 1) { totalCount } openIssues: issues(states: OPEN) { totalCount } closedIssues: issues(states: CLOSED) { totalCount } pullRequests(first: 1) { totalCount } repositories(first: 50, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) { totalCount nodes { languages(first: 2, orderBy: {direction:DESC, field: SIZE}) { nodes { name } } stargazers { totalCount } createdAt } } } }","variables":{"username":"0xnayuta"}}
+          {"query":"query userInfo($username: String!) { user(login: $username) { repositories(first: 50, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) { totalCount nodes { createdAt } } } }","variables":{"username":"0xnayuta"}}
           EOF
-          curl -sS -o /tmp/graphql_resp.json -w 'HTTP %{http_code}\n' \
-            -H "Authorization: Bearer ${GHTOK}" \
+          curl -sS -H "Authorization: Bearer ${GHTOK}" \
             -H "Content-Type: application/json" \
             --data-binary @/tmp/q.json \
-            https://api.github.com/graphql
-          echo "--- response body (first 500 chars) ---"
-          head -c 500 /tmp/graphql_resp.json
-          echo
+            https://api.github.com/graphql \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); nodes=d['data']['user']['repositories']['nodes']; print('totalCount:', d['data']['user']['repositories']['totalCount']); print('nodes len:', len(nodes)); print('null nodes:', sum(1 for n in nodes if n is None))"
 
-      - name: Run exact soxa request with full error dump
-        shell: bash
-        env:
-          GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run trophy action with SUMMARY_GITHUB_TOKEN
+        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
+        with:
+          username: ${{ github.repository_owner }}
+          file: dist/trophy.svg
+          theme: radical
+          token: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
+
+      - name: Verify trophy.svg exists
         run: |
-          mkdir -p /tmp/diag
-          cat > /tmp/diag/soxa_test.ts <<'EOF'
-          import { Soxa as ServiceProvider } from "https://deno.land/x/soxa@1.4/src/core/Soxa.ts";
-          import { defaults } from "https://deno.land/x/soxa@1.4/src/defaults.ts";
-          const soxa = new ServiceProvider({ ...defaults, baseURL: "https://api.github.com/graphql" });
-          const query = `query userInfo($username: String!) {
-            user(login: $username) {
-              createdAt
-              contributionsCollection {
-                totalCommitContributions
-                restrictedContributionsCount
-                totalPullRequestReviewContributions
-              }
-              organizations(first: 1) { totalCount }
-              followers(first: 1) { totalCount }
-              openIssues: issues(states: OPEN) { totalCount }
-              closedIssues: issues(states: CLOSED) { totalCount }
-              pullRequests(first: 1) { totalCount }
-              repositories(first: 50, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
-                totalCount
-                nodes {
-                  languages(first: 2, orderBy: {direction:DESC, field: SIZE}) { nodes { name } }
-                  stargazers { totalCount }
-                  createdAt
-                }
-              }
-            }
-          }`;
-          try {
-            const resp = await soxa.post("", {}, {
-              data: { query, variables: { username: "0xnayuta" } },
-              headers: { Authorization: `bearer ${Deno.env.get("GITHUB_TOKEN1")}` },
-            });
-            console.log("SUCCESS", JSON.stringify(resp.data).slice(0, 300));
-          } catch (e) {
-            console.log("ERROR TYPE:", e?.constructor?.name);
-            console.log("ERROR MESSAGE:", e?.message);
-            console.log("ERROR STATUS:", e?.response?.status, e?.status);
-            console.log("ERROR DATA:", JSON.stringify(e?.response?.data ?? e?.data ?? null)?.slice(0, 500));
-            console.log("FULL ERROR:", JSON.stringify(e, Object.getOwnPropertyNames(e ?? {})));
-          }
-          EOF
-          export DENO_BIN=$(which deno 2>/dev/null || true)
-          if [ -z "$DENO_BIN" ]; then
-            curl -sfL https://github.com/denoland/deno/releases/download/v1.46.3/deno-x86_64-unknown-linux-gnu.zip -o /tmp/deno.zip
-            unzip -oq /tmp/deno.zip -d /tmp/diagdeno
-            DENO_BIN=/tmp/diagdeno/deno
-          fi
-          "$DENO_BIN" run --allow-net --allow-env /tmp/diag/soxa_test.ts 2>&1 | grep -v '^Download ' | grep -v '^Warning '
+          ls -la dist/trophy.svg && head -c 200 dist/trophy.svg; echo
