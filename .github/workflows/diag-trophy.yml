@@ -1,0 +1,33 @@
+name: Diag Trophy
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Test GraphQL with GITHUB_TOKEN
+        shell: bash
+        env:
+          GHTOK: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -o /tmp/graphql_resp.json -w 'HTTP %{http_code}\n' \
+            -H "Authorization: Bearer ${GHTOK}" \
+            -H "Content-Type: application/json" \
+            -d '{"query":"query { user(login: \"0xnayuta\") { createdAt login } }"}' \
+            https://api.github.com/graphql
+          echo "--- response body ---"
+          cat /tmp/graphql_resp.json
+          echo
+
+      - name: Run trophy action with visible errors
+        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
+        with:
+          username: ${{ github.repository_owner }}
+          file: dist/trophy.svg
+          theme: radical
+          token: ${{ secrets.GITHUB_TOKEN }}
