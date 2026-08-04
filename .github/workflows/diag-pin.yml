@@ -1,0 +1,29 @@
+name: Diag Pin
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test GraphQL getRepo with GITHUB_TOKEN
+        shell: bash
+        env:
+          GHTOK: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -o /tmp/g.json -w 'GRAPHQL HTTP %{http_code}\n' \
+            -H "Authorization: Bearer ${GHTOK}" \
+            -H "Content-Type: application/json" \
+            -d '{"query":"query getRepo($login: String!, $repo: String!) { user(login: $login) { repository(name: $repo) { name isPrivate } } }","variables":{"login":"0xnayuta","repo":"devpiano"}}' \
+            https://api.github.com/graphql
+          cat /tmp/g.json; echo
+
+      - name: Test REST repos endpoint with GITHUB_TOKEN
+        shell: bash
+        env:
+          GHTOK: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -o /tmp/r.json -w 'REST HTTP %{http_code}\n' \
+            -H "Authorization: Bearer ${GHTOK}" \
+            https://api.github.com/repos/0xnayuta/devpiano
+          jq '{name, private, description, language, stargazers_count, forks_count}' /tmp/r.json 2>/dev/null || head -c 300 /tmp/r.json
