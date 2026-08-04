@@ -92,6 +92,19 @@ jobs:
           EOF
           node repro.mjs
 
+      - name: Run pin action with core 2.1.5 + GITHUB_TOKEN
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D
+          path: dist/pins/devpiano-v215.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          core_version: 2.1.5
+
+      - name: Check core 2.1.5 card
+        run: |
+          if grep -q 'went wrong' dist/pins/devpiano-v215.svg; then echo "V215 CARD: ERROR"; else echo "V215 CARD: OK"; fi
+
       - name: Check card content
         run: |
           if grep -q 'went wrong' dist/pins/devpiano.svg; then echo "PIN CARD: ERROR"; else echo "PIN CARD: OK"; fi
