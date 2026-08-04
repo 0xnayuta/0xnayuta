@@ -60,6 +60,38 @@ jobs:
           path: dist/pins/devpiano.svg
           token: ${{ secrets.PIN_GITHUB_TOKEN }}
 
+      - name: Reproduce core fetch with axios + GITHUB_TOKEN
+        shell: bash
+        env:
+          GHTOK: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /tmp/ax && cd /tmp/ax && npm init -y >/dev/null 2>&1 && npm install axios@1 >/dev/null 2>&1
+          cat > repro.mjs <<'EOF'
+          import axios from "axios";
+          const query = `
+          fragment RepoInfo on Repository {
+            name nameWithOwner isPrivate isArchived isTemplate stargazerCount
+            description primaryLanguage { color id name } forkCount
+          }
+          query getRepo($login: String!, $repo: String!) {
+            user(login: $login) { repository(name: $repo) { ...RepoInfo } }
+            organization(login: $login) { repository(name: $repo) { ...RepoInfo } }
+          }`;
+          try {
+            const resp = await axios({
+              url: "https://api.github.com/graphql",
+              method: "post",
+              headers: { Authorization: `token ${process.env.GHTOK}` },
+              data: { query, variables: { login: "0xnayuta", repo: "devpiano" } },
+            });
+            console.log("STATUS", resp.status);
+            console.log("FULL", JSON.stringify(resp.data));
+          } catch (e) {
+            console.log("AXIOS_ERR", e.message, JSON.stringify(e.response?.data ?? null));
+          }
+          EOF
+          node repro.mjs
+
       - name: Check card content
         run: |
           if grep -q 'went wrong' dist/pins/devpiano.svg; then echo "PIN CARD: ERROR"; else echo "PIN CARD: OK"; fi
