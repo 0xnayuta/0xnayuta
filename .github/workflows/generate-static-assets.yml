@@ -180,7 +180,7 @@ jobs:
       # 9. 生成置顶项目卡片
       # ============================================
       - name: Generate pin card (devpiano)
-        uses: readme-tools/github-readme-stats-action@v1
+        uses: ./.github/readme-stats-action
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D
@@ -188,7 +188,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate pin card (devkit-pi)
-        uses: readme-tools/github-readme-stats-action@v1
+        uses: ./.github/readme-stats-action
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=devkit-pi&theme=radical&hide_border=true&title_color=FF5F6D
