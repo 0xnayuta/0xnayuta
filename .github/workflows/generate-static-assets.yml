@@ -54,13 +54,23 @@ jobs:
       # ============================================
       # 3. 生成 GitHub Profile Trophy
       # ============================================
-      - name: Generate trophy
-        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
+      # 使用本地化生成器（.github/trophy），修复了原 action 在
+      # 仓库级 GITHUB_TOKEN 下对私有仓库返回 null 节点时崩溃的问题
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
         with:
-          username: ${{ github.repository_owner }}
-          file: dist/trophy.svg
-          theme: radical
-          token: ${{ secrets.GITHUB_TOKEN }}
+          deno-version: v1.x
+
+      - name: Generate trophy
+        shell: bash
+        env:
+          GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          deno run --allow-net --allow-env --allow-read --allow-write \
+            .github/trophy/render_svg.ts \
+            "${{ github.repository_owner }}" \
+            --file "dist/trophy.svg" \
+            --theme "radical"
 
       # ============================================
       # 4. 下载技能图标
