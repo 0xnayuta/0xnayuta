@@ -8,30 +8,36 @@ jobs:
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout action source
+        uses: actions/checkout@v6
+        with:
+          repository: Erik-Donath/github-profile-trophy
+          ref: feature/generate-svg
+          path: act
 
-      - name: Count null repo nodes with GITHUB_TOKEN
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run unmodified render_svg.ts via wrapper with dump
         shell: bash
         env:
-          GHTOK: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN1: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
         run: |
-          cat > /tmp/q.json <<'EOF'
-          {"query":"query userInfo($username: String!) { user(login: $username) { repositories(first: 50, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) { totalCount nodes { createdAt } } } }","variables":{"username":"0xnayuta"}}
+          mkdir -p /tmp/wrap
+          cat > /tmp/wrap/w.ts <<'EOF'
+          const dumps = (e: unknown) => {
+            const o = e as Record<string, unknown>;
+            const out: Record<string, unknown> = { name: (e as Error)?.name, message: (e as Error)?.message, stack: (e as Error)?.stack };
+            for (const k of Object.getOwnPropertyNames(o ?? {})) out[k] = o[k];
+            return JSON.stringify(out, null, 1).slice(0, 4000);
+          };
+          try {
+            await import("/home/runner/work/0xnayuta/0xnayuta/act/render_svg.ts");
+          } catch (e) {
+            console.log("WRAPPER_CAUGHT " + dumps(e));
+            Deno.exit(42);
+          }
           EOF
-          curl -sS -H "Authorization: Bearer ${GHTOK}" \
-            -H "Content-Type: application/json" \
-            --data-binary @/tmp/q.json \
-            https://api.github.com/graphql \
-            | python3 -c "import json,sys; d=json.load(sys.stdin); nodes=d['data']['user']['repositories']['nodes']; print('totalCount:', d['data']['user']['repositories']['totalCount']); print('nodes len:', len(nodes)); print('null nodes:', sum(1 for n in nodes if n is None))"
-
-      - name: Run trophy action with SUMMARY_GITHUB_TOKEN
-        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
-        with:
-          username: ${{ github.repository_owner }}
-          file: dist/trophy.svg
-          theme: radical
-          token: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
-
-      - name: Verify trophy.svg exists
-        run: |
-          ls -la dist/trophy.svg && head -c 200 dist/trophy.svg; echo
+          deno run --allow-net --allow-env --allow-read --allow-write /tmp/wrap/w.ts "0xnayuta" --file "dist/trophy.svg" --theme "radical" 2>&1 | grep -vE '^(Download|Warning)' 
