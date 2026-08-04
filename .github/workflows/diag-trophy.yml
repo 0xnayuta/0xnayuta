@@ -74,7 +74,7 @@ jobs:
             console.log("FULL ERROR:", JSON.stringify(e, Object.getOwnPropertyNames(e ?? {})));
           }
           EOF
-          /tmp/deno 2>/dev/null; export DENO_BIN=$(which deno || true)
+          export DENO_BIN=$(which deno 2>/dev/null || true)
           if [ -z "$DENO_BIN" ]; then
             curl -sfL https://github.com/denoland/deno/releases/download/v1.46.3/deno-x86_64-unknown-linux-gnu.zip -o /tmp/deno.zip
             unzip -oq /tmp/deno.zip -d /tmp/diagdeno
