@@ -40,6 +40,18 @@ jobs:
           echo "--- PIN_GITHUB_TOKEN (Bearer) ---"
           curl -sS -H "Authorization: Bearer ${PINTOK}" -H "Content-Type: application/json" --data-binary @/tmp/pq.json https://api.github.com/graphql | head -c 200; echo
 
+      - name: Run pin action with GITHUB_TOKEN (control)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D
+          path: dist/pins/devpiano-ghs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check GITHUB_TOKEN card
+        run: |
+          if grep -q 'went wrong' dist/pins/devpiano-ghs.svg; then echo "GHS CARD: ERROR"; else echo "GHS CARD: OK"; fi
+
       - name: Run pin action with PIN_GITHUB_TOKEN
         uses: readme-tools/github-readme-stats-action@v1
         with:
@@ -50,5 +62,5 @@ jobs:
 
       - name: Check card content
         run: |
-          grep -c 'went wrong' dist/pins/devpiano.svg || echo "NO ERROR - card OK"
-          head -c 200 dist/pins/devpiano.svg; echo
+          if grep -q 'went wrong' dist/pins/devpiano.svg; then echo "PIN CARD: ERROR"; else echo "PIN CARD: OK"; fi
+          head -c 120 dist/pins/devpiano.svg; echo
