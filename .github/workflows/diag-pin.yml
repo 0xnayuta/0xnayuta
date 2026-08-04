@@ -6,106 +6,26 @@ jobs:
   diag:
     runs-on: ubuntu-latest
     steps:
-      - name: Bisect nulling fields with GITHUB_TOKEN
-        shell: bash
-        env:
-          GHTOK: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          Q() {
-            curl -sS -H "Authorization: Bearer ${GHTOK}" -H "Content-Type: application/json" \
-              -d "{\"query\":\"query getRepo(\$login: String!, \$repo: String!) { user(login: \$login) { repository(name: \$repo) { $1 } } }\",\"variables\":{\"login\":\"0xnayuta\",\"repo\":\"devpiano\"}}" \
-              https://api.github.com/graphql | python3 -c "import json,sys; d=json.load(sys.stdin); r=d.get('data',{}).get('user',{}).get('repository'); print('NULL' if r is None else 'OK')"
-          }
-          echo -n "name isPrivate         : "; Q "name isPrivate"
-          echo -n "+ stargazerCount       : "; Q "name isPrivate stargazerCount"
-          echo -n "+ forkCount            : "; Q "name isPrivate forkCount"
-          echo -n "+ description          : "; Q "name isPrivate description"
-          echo -n "+ primaryLanguage      : "; Q "name isPrivate primaryLanguage { name }"
-          echo -n "+ nameWithOwner        : "; Q "name isPrivate nameWithOwner"
-          echo -n "+ isArchived isTemplate: "; Q "name isPrivate isArchived isTemplate"
+      - uses: actions/checkout@v6
 
-      - name: Exact package query with GITHUB_TOKEN vs PIN token
-        shell: bash
-        env:
-          GHTOK: ${{ secrets.GITHUB_TOKEN }}
-          PINTOK: ${{ secrets.PIN_GITHUB_TOKEN }}
-        run: |
-          cat > /tmp/pq.json <<'EOF'
-          {"query":"fragment RepoInfo on Repository { name nameWithOwner isPrivate isArchived isTemplate stargazerCount description primaryLanguage { color id name } forkCount } query getRepo($login: String!, $repo: String!) { user(login: $login) { repository(name: $repo) { ...RepoInfo } } organization(login: $login) { repository(name: $repo) { ...RepoInfo } } }","variables":{"login":"0xnayuta","repo":"devpiano"}}
-          EOF
-          echo "--- GITHUB_TOKEN (token prefix) ---"
-          curl -sS -H "Authorization: token ${GHTOK}" -H "Content-Type: application/json" --data-binary @/tmp/pq.json https://api.github.com/graphql | head -c 200; echo
-          echo "--- GITHUB_TOKEN (Bearer prefix) ---"
-          curl -sS -H "Authorization: Bearer ${GHTOK}" -H "Content-Type: application/json" --data-binary @/tmp/pq.json https://api.github.com/graphql | head -c 200; echo
-          echo "--- PIN_GITHUB_TOKEN (Bearer) ---"
-          curl -sS -H "Authorization: Bearer ${PINTOK}" -H "Content-Type: application/json" --data-binary @/tmp/pq.json https://api.github.com/graphql | head -c 200; echo
-
-      - name: Run pin action with GITHUB_TOKEN (control)
-        uses: readme-tools/github-readme-stats-action@v1
-        with:
-          card: pin
-          options: username=${{ github.repository_owner }}&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D
-          path: dist/pins/devpiano-ghs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check GITHUB_TOKEN card
-        run: |
-          if grep -q 'went wrong' dist/pins/devpiano-ghs.svg; then echo "GHS CARD: ERROR"; else echo "GHS CARD: OK"; fi
-
-      - name: Run pin action with PIN_GITHUB_TOKEN
-        uses: readme-tools/github-readme-stats-action@v1
+      - name: Run vendored pin action with GITHUB_TOKEN
+        uses: ./.github/readme-stats-action
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D
           path: dist/pins/devpiano.svg
-          token: ${{ secrets.PIN_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Reproduce core fetch with axios + GITHUB_TOKEN
-        shell: bash
-        env:
-          GHTOK: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p /tmp/ax && cd /tmp/ax && npm init -y >/dev/null 2>&1 && npm install axios@1 >/dev/null 2>&1
-          cat > repro.mjs <<'EOF'
-          import axios from "axios";
-          const query = `
-          fragment RepoInfo on Repository {
-            name nameWithOwner isPrivate isArchived isTemplate stargazerCount
-            description primaryLanguage { color id name } forkCount
-          }
-          query getRepo($login: String!, $repo: String!) {
-            user(login: $login) { repository(name: $repo) { ...RepoInfo } }
-            organization(login: $login) { repository(name: $repo) { ...RepoInfo } }
-          }`;
-          try {
-            const resp = await axios({
-              url: "https://api.github.com/graphql",
-              method: "post",
-              headers: { Authorization: `token ${process.env.GHTOK}` },
-              data: { query, variables: { login: "0xnayuta", repo: "devpiano" } },
-            });
-            console.log("STATUS", resp.status);
-            console.log("FULL", JSON.stringify(resp.data));
-          } catch (e) {
-            console.log("AXIOS_ERR", e.message, JSON.stringify(e.response?.data ?? null));
-          }
-          EOF
-          node repro.mjs
-
-      - name: Run pin action with core 2.1.5 + GITHUB_TOKEN
-        uses: readme-tools/github-readme-stats-action@v1
+      - name: Run vendored pin action devkit-pi with GITHUB_TOKEN
+        uses: ./.github/readme-stats-action
         with:
           card: pin
-          options: username=${{ github.repository_owner }}&repo=devpiano&theme=radical&hide_border=true&title_color=FF5F6D
-          path: dist/pins/devpiano-v215.svg
+          options: username=${{ github.repository_owner }}&repo=devkit-pi&theme=radical&hide_border=true&title_color=FF5F6D
+          path: dist/pins/devkit-pi.svg
           token: ${{ secrets.GITHUB_TOKEN }}
-          core_version: 2.1.5
 
-      - name: Check core 2.1.5 card
+      - name: Check cards
         run: |
-          if grep -q 'went wrong' dist/pins/devpiano-v215.svg; then echo "V215 CARD: ERROR"; else echo "V215 CARD: OK"; fi
-
-      - name: Check card content
-        run: |
-          if grep -q 'went wrong' dist/pins/devpiano.svg; then echo "PIN CARD: ERROR"; else echo "PIN CARD: OK"; fi
-          head -c 120 dist/pins/devpiano.svg; echo
+          for f in dist/pins/devpiano.svg dist/pins/devkit-pi.svg; do
+            if grep -q 'went wrong' "$f"; then echo "$f: ERROR"; else echo "$f: OK ($(wc -c < "$f") bytes)"; fi
+          done

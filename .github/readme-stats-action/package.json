@@ -1,0 +1,10 @@
+{
+  "name": "readme-stats-action",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@stats-organization/github-readme-stats-core": "2.1.5"
+  }
+}
